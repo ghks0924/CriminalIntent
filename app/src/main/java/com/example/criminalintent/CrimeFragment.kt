@@ -3,15 +3,20 @@ package com.example.criminalintent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity.apply
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import androidx.core.view.GravityCompat.apply
 import androidx.fragment.app.Fragment
+import java.util.*
 
+private const val ARG_CRIME_ID = "crime_id"
 class CrimeFragment : Fragment() {
+
 
     private lateinit var crime : Crime
     private lateinit var titleField : EditText
@@ -64,5 +69,17 @@ class CrimeFragment : Fragment() {
         }
 
         titleField.addTextChangedListener(titleWatcher)
+    }
+
+    companion object{
+        fun newInstance(crimeId: UUID):CrimeFragment {
+            val args = Bundle().apply{
+                putSerializable(ARG_CRIME_ID, crimeId)
+            }
+            return CrimeFragment().apply {
+                arguments = args
+            }
+        }
+
     }
 }
