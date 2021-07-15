@@ -3,6 +3,7 @@ package com.example.criminalintent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity.apply
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,9 @@ import androidx.core.view.GravityCompat.apply
 import androidx.fragment.app.Fragment
 import java.util.*
 
+private const val TAG = "CrimeFragment"
 private const val ARG_CRIME_ID = "crime_id"
+
 
 class CrimeFragment : Fragment() {
 
@@ -27,6 +30,8 @@ class CrimeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
+        val crimeId:UUID = arguments?.getSerializable(ARG_CRIME_ID) as UUID
+        Log.d(TAG, "args bundle crime ID : ${crimeId}")
     }
 
     override fun onCreateView(
