@@ -15,12 +15,13 @@ import androidx.fragment.app.Fragment
 import java.util.*
 
 private const val ARG_CRIME_ID = "crime_id"
+
 class CrimeFragment : Fragment() {
 
 
-    private lateinit var crime : Crime
-    private lateinit var titleField : EditText
-    private lateinit var dateButton : Button
+    private lateinit var crime: Crime
+    private lateinit var titleField: EditText
+    private lateinit var dateButton: Button
     private lateinit var solvedCheckButton: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +51,7 @@ class CrimeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val titleWatcher = object : TextWatcher{
+        val titleWatcher = object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
@@ -62,24 +63,27 @@ class CrimeFragment : Fragment() {
             }
         }
 
-        solvedCheckButton.apply{
+        solvedCheckButton.apply {
             setOnCheckedChangeListener { compoundButton, b ->
                 crime.isSolved = isChecked
+
             }
         }
 
         titleField.addTextChangedListener(titleWatcher)
     }
 
-    companion object{
-        fun newInstance(crimeId: UUID):CrimeFragment {
-            val args = Bundle().apply{
+
+    companion object {
+        fun newInstance(crimeId: UUID): CrimeFragment {
+            val args = Bundle().apply {
                 putSerializable(ARG_CRIME_ID, crimeId)
             }
             return CrimeFragment().apply {
                 arguments = args
             }
         }
-
     }
+
+
 }
